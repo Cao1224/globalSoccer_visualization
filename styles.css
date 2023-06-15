@@ -4,13 +4,12 @@ html {
 }
 
 body {
-
-    background-image: linear-gradient(0.45turn, #bdf271, #ebf8e1, #4ac29a);
+    background: linear-gradient(120deg, #240c3b 0%, #415484 100%);
     background-size: cover;
 
     font-family: 'Avenir', sans-serif;
     font-size: 18px;
-    color: black;
+    color: white;
 
     padding-top: 0;
     padding-left: 0;
@@ -24,7 +23,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #000000;
+    color: white;
     font-weight: bold;
     margin-top: 1em;
     margin-bottom: 0.5em;
@@ -48,6 +47,7 @@ h4 {
   
 h5 {
     font-size: 1.25em;
+    color: rgb(225, 255, 0);
 }
   
 h6 {
@@ -58,34 +58,44 @@ p {
     font-size: 18px;
     line-height: 1.5;
     margin-bottom: 20px;
-    color: black;
+    color: white;
 }
 
-.header-container {
-    background-image: linear-gradient(45deg,#29bf12ad, #ffd900b3);
-    font-family: 'Avenir', sans-serif;
-    font-weight: bold;
-    color: #333;
-    display: flex;
-    justify-content: left;
-    align-content: center;
-    width: 100%;
-    padding: 20px 0;
+a:visited {
+    color: rgb(148, 189, 138);
+    text-decoration: none;
 }
+
+.credit-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+    background-color: #355a2b;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 
 .navbar {
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: linear-gradient(45deg,#240c3b, #415484);
+    font-family: 'Avenir', sans-serif;
+    font-weight: bold;
+    color: rgb(63, 216, 246);
+    justify-content: center;
+    align-content: center;
+    z-index: 1000;
+    border-radius: 10px;
 }
 
 .navbar ul {
-    list-style: none;
+    list-style-type: none;
     margin: 0;
     padding: 0;
+    overflow: hidden;
     display: flex;
-    align-items: flex-end;
-    gap: 20px;
 }
 
 .navbar li {
@@ -93,27 +103,25 @@ p {
 }
 
 .navbar a {
+    display: block;
     font-size: 18px;
-    color: black;
+    color: rgb(63, 216, 246);
+    text-align: center;
+    padding: 14px 20px;
     text-decoration: none;
-    padding: 10px;
     border-bottom: 2px solid transparent;
 }
 
-.navbar ul li a:hover {
-    color: #333333;
+.navbar a:hover {
+    color: white;
     font-weight: bold;
-}
-
-.navbar li.active a {
-  border-bottom-color: #49acee;
 }
 
 .title {
     font-size: 36px;
     font-weight: bold;
     text-align: center;
-    color: black;
+    color: white;
     margin-top: 10px;
     margin-bottom: 5px;
 }
@@ -121,4 +129,150 @@ p {
 .subtitle{
     font-size: 18px;
     text-align: center;
+}
+
+.about-section {
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.table-section, .network-section, .map-section, .end-section, .words-section, .facts-section {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.video-container {
+    text-align: center;
+}
+
+.title-section {
+    display: flex;
+    align-items: center;
+}
+
+.how-to-read-button {
+    margin-left: 20px;
+    margin-top: 5px;
+    cursor: pointer;
+    padding: 5px 15px;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-family: 'Avenir', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    border: none; 
+}
+
+.center_plot {
+    margin: 0;
+    text-align: center;
+}
+
+.legend {
+    position: relative;
+    height: 150px;
+    overflow-y: scroll;
+    border: 1px solid #cccccc;
+    padding: 10px;
+}
+
+
+.tooltip {
+    position: absolute;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Avenir', sans-serif;
+    color: black;
+}
+
+.modal {
+    display: none;
+    position: fixed; 
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    font-family: 'Avenir', sans-serif;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content Box */
+.modal-content {
+    background-image: linear-gradient(45deg,#9f50e9, #5f87ee);
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 15px;
+    width: 50%;
+    position: relative;
+}
+
+.how-to-read-graphic {
+    position: absolute;
+    font-family: 'Avenir', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 15px;
+  }
+
+.instruction-modal-content {
+    margin-top: 50px; 
+  }
+
+/* The Close Button */
+.closemodal {
+    background: transparent;
+    font-family: 'Avenir', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 1px solid rgb(10, 58, 112);
+    color: white;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.closemodal:hover {
+    background-color: #4CAF50;
+    color: rgb(10, 58, 112);
+    border: none;
+}
+
+ul {
+    list-style-type: circle;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Footer Style */
+.footer {
+    position: relative;
+    margin-top: auto;
+    width: 100%;
+    background-image: linear-gradient(45deg,#240c3b, #415484);
+    color: white;
+    padding: 2px;
+}
+
+.footer-text {
+    text-align: center;
+    font-size: 12px;
+    color: white;
 }

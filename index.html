@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="icon" href="assets/football.png">
-    <title>Global Football Chronicles</title>
+    <title>Global Soccer Chronicles</title>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,32 +10,146 @@
     
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    
+    <script type="text/javascript" src="script.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 
-    <div class = "header-container">
-        <div class = "navbar">
-            <li><a href="#about">About</a></li>
-            <li><a href="#table">Table</a></li>
-            <li><a href="#network">Network</a></li>
-            <li><a href="#map">Map</a></li>
-        </div>
+<body onload=displayPlot()>
+    <div class = "navbar">
+        <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#table">Table</a></li>
+        <li><a href="#network">Network</a></li>
+        <li><a href="#map">Map</a></li>
+        <li><a href="#wordCloud">Word Cloud</a></li>
+        <li><a href="#facts">Facts</a></li>
+        </ul>
     </div>
 
-    <div class="title">Global Football Chronicles</div>
+
+    <div class="title">Global Soccer Chronicles</div>
     <div class="subtitle">Unveiling the Tapestry of International Matches</div>
 
     <div id="about" class="about-section">
-        <div class="text-container">
-            <h4>About</h4>
-            <p>In the world of international football, a vast dataset containing 44,341 results of matches has been compiled, spanning from the very first official match in 1872 up to the year 2023. This dataset encompasses a wide range of tournaments, from the prestigious FIFA World Cup to lesser-known competitions like the FIFI Wild Cup. The dataset focuses exclusively on men’s full international and excludes matches from the Olympic Games or those involving B-teams, U-23 teams, or league select teams. </p>
-            <p>The purpose of this story is to delve into this comprehensive dataset and explore three different types of visualizations – table-related, network-related, and geometry-related. By analyzing these visualizations, we aim to uncover valuable insights and patterns that can enhance our understanding of historical trends, team rivalries, geographical patterns, and more. Ultimately, these visualizations contribute to the growth and development of international football, empowering stakeholders to make informed decision and drive the game forward.</p>
-        </div>
+        <h5>ABOUT</h5>
+
         <div class="video-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/dFLaabgXhpc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dFLaabgXhpc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <p>In the world of international football, a vast dataset containing 44,341 results of matches has been compiled, spanning from the very first official match in 1872 up to the year 2023. This dataset encompasses a wide range of tournaments, from the prestigious FIFA World Cup to lesser-known competitions like the FIFI Wild Cup. The dataset focuses exclusively on men’s full international and excludes matches from the Olympic Games or those involving B-teams, U-23 teams, or league select teams. </p>
+        <p>The purpose of this story is to delve into this comprehensive dataset and explore three different types of visualizations – table-related, network-related, geometry-related, and word cloud. By analyzing these visualizations, we aim to uncover valuable insights and patterns that can enhance our understanding of historical trends, team rivalries, geographical patterns, and more. Ultimately, these visualizations contribute to the growth and development of international football, empowering stakeholders to make informed decision and drive the game forward.</p>
+        <p>Credit to <a class="credit-link" href="https://www.kaggle.com/datasets/martj42/international-football-results-from-1872-to-2017">Kaggle: International football results from 1872 to 2023</a></p>
+    </div>
+
+    <div id="table" class="table-section">
+        <div class="title-section">
+            <h5>THE SCOREBOARD CHRONICLES</h5>
+            <button id="how-to-read-btn1" class="how-to-read-button">HOW TO READ THE GRAPHIC</button>
+
+            <div id="instruction-modal1" class="modal">
+                <div id="modal-text-container" class="modal-content">
+                    <p class="how-to-read-graphic">How to read the graphic</p>
+                    <p id="instruction-modal-content1" class="instruction-modal-content"></p>
+                    <button id="close-btn1" class="closemodal">Close</button>
+                </div>
+            </div>
+        </div>
+        <div id="table_plot" class="center_plot"></div>
+        <div id="legend1" class="legend"></div>
+        <div>
+            <p><strong>Comment: </strong>Brazil leads the pack in historical football wins with an impressive 665 victories, highlighting the country's longstanding dominance and rich heritage in the sport. Following closely are England and Germany, with 602 and 581 wins respectively, reflecting the strong football traditions in Europe. Argentina's 571 wins underscores the competitive spirit and talent that South America brings to the game. Sweden, South Korea, and Mexico have also demonstrated considerable prowess, with South Korea notably being the highest-ranking Asian country. Hungary, Italy, and France round out the top ten, showcasing Europe's ongoing significance and contribution to international football. The data serves as a testament to the global passion and competitive nature of football across diverse cultures and continents.</p>
+        </div>
+        <!-- <div id="neutral_plot" class="center_plot"></div>
+        <div id="legend2" class="legend"></div> -->
+    </div>
+
+    <div id="network" class="network-section">
+        <div class="title-section">
+            <h5>TANGLED RIVALRIES</h5>
+            <button id="how-to-read-btn2" class="how-to-read-button">HOW TO READ THE GRAPHIC</button>
+
+            <div id="instruction-modal2" class="modal">
+                <div id="modal-text-container" class="modal-content">
+                    <p class="how-to-read-graphic">How to read the graphic</p>
+                    <p id="instruction-modal-content2" class="instruction-modal-content"></p>
+                    <button id="close-btn2" class="closemodal">Close</button>
+                </div>
+            </div>
+        </div>
+        <div id="network_plot" class="center_plot"></div>
+        <div>
+            <p><strong>Comment: </strong>This network visualization displays only those countries that have participated in more than 250 matches. It's important to recognize that the data shown is filtered to include only countries that meet this threshold, thus providing a focused view on the more actively participating nations.</p>
         </div>
     </div>
-<body>
 
+    <div id="map" class="map-section">
+        <div class="title-section">
+            <h5>FILED OF DREAMS</h5>
+            <button id="how-to-read-btn3" class="how-to-read-button">HOW TO READ THE GRAPHIC</button>
+
+            <div id="instruction-modal3" class="modal">
+                <div id="modal-text-container" class="modal-content">
+                    <p class="how-to-read-graphic">How to read the graphic</p>
+                    <p id="instruction-modal-content3" class="instruction-modal-content"></p>
+                    <button id="close-btn3" class="closemodal">Close</button>
+                </div>
+            </div>
+        </div>
+        <div id="map_plot" class="center_plot"></div>
+        <div>
+            <p> <strong>Comment: </strong> The top three countries with the highest host counts are England, the United States, and France, respectively. It is important to note that host counts data may reflect historical information, and over time, geopolitical changes can influence these figures. For instance, political turmoil or conflicts can lead to changes in territorial boundaries or even the names of countries and regions. Such changes may subsequently have an impact on the distribution and number of hosts in those areas. Therefore, while analyzing or using this data, it is essential to be aware of the historical context and any geopolitical changes that might have occurred over the period during which the data was collected.
+            </p>
+        </div>
+    </div>
+
+    <div id="wordCloud" class="words-section">
+        <div class="title-section">
+            <h5>GOALS GALORE: UNLEASHING THE SCORER SPECTACLE</h5>
+            <button id="how-to-read-btn4" class="how-to-read-button">HOW TO READ THE GRAPHIC</button>
+
+            <div id="instruction-modal4" class="modal">
+                <div id="modal-text-container" class="modal-content">
+                    <p class="how-to-read-graphic">How to read the graphic</p>
+                    <p id="instruction-modal-content4" class="instruction-modal-content"></p>
+                    <button id="close-btn4" class="closemodal">Close</button>
+                </div>
+            </div>
+        </div>
+        <div id="word_cloud" class="center_plot"></div>
+        <div>
+            <p><strong>Comment: </strong>In the word cloud, the names of players are displayed in various font sizes, which are indicative of the frequency with which each name appears. Cristiano Ronaldo's name stands out prominently with the largest font size, as it appears 91 times. Following him, Robert Lewandowski's name is displayed with the second-largest font size, representing its appearance 56 times. Lionel Messi is a close third, with his name appearing 54 times and being represented in slightly smaller font size than Lewandowski's. The substantial font sizes of these three names highlight their prominence in the dataset.</p>
+        </div>
+    </div>
+
+    <div id="facts" class="facts-section">
+        <h5>KICKING KNOWLEDGE: SCORES & STORIES</h5>
+        <ul>
+            <li>The world's oldest soccer competition is the FA Cup, which was first held in England in 1871. The tournament is still ongoing today, making it over 150 years old and one of the longest-running soccer competitions in history.</li>
+            <li>The fastest goal ever scored in a professional soccer match was by Hakan Şükür of Turkey, who found the back of the net just 11 seconds into a game against South Korea during the 2002 FIFA World Cup.</li>
+            <li>The highest-scoring soccer match in history took place in 2002 in Madagascar. The match between AS Adema and SO l'Emyrne ended with a scoreline of 149-0 in favor of AS Adema. However, it's important to note that SO l'Emyrne deliberately scored own goals as a form of protest during the game.</li>
+            <li>The most goals scored by a single player in a calendar year is an astonishing 91 goals, achieved by Lionel Messi in 2012 while playing for Barcelona. This remarkable feat surpassed the previous record held by Gerd Müller, who scored 85 goals in 1972.</li>
+            <li>The largest soccer stadium in the world is the Rungrado 1st of May Stadium, located in Pyongyang, North Korea. It has a seating capacity of 114,000 spectators and is primarily used for national team matches and other major sporting events.</li>
+        </ul>
+    </div>
+
+    <div id="end" class="end-section">
+        <h5>CONCLUSION</h5>
+        <div>
+            <p>The utilization of various visualizations including stacked bars, network graphs, choropleth world maps, and word clouds, has allowed us to unravel a plethora of insights from the extensive dataset on international football. The visualizations exhibit the historical successes of certain countries, notably Brazil, England, and Germany, and provide insights into the hosting data, where England, the United States, and France stand out. Additionally, they offer a glance into the most prominent names in international football, like Cristiano Ronaldo, Robert Lewandowski, and Lionel Messi. It’s also imperative to consider the historical context and geopolitical changes which may influence the data over time. Collectively, these visualizations enable stakeholders to make more informed decisions, be it in player selection, strategizing, or hosting events, ultimately fostering the development of international football.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>&copy; 2023 Yuanchenng Cao. All rights reserved.</p>
+        <div>
+    </footer>
+
+    <script src="index.js"></script>
 </body>
 
 </html>
